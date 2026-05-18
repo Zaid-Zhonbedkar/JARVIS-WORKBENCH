@@ -1,0 +1,62 @@
+# JARVIS Configuration
+# Edit this file to customize your assistant.
+
+voice:
+  wake_word: "jarvis"
+  language: "en-US"
+  energy_threshold: 300
+  pause_threshold: 0.8
+  tts_engine: "pyttsx3"          # pyttsx3 | coqui
+  tts_rate: 175
+  tts_volume: 0.9
+  stt_backend: "google"          # google | whisper | vosk
+  whisper_model: "base"          # tiny | base | small | medium | large
+
+ai:
+  provider: "ollama"             # ollama | openai | huggingface
+  model: "llama3"                # Any model available in your provider
+  ollama_host: "http://localhost:11434"
+  openai_api_key: ""             # Set if using OpenAI
+  temperature: 0.7
+  max_tokens: 2048
+  system_prompt: >
+    You are JARVIS, an advanced AI desktop assistant.
+    You are helpful, concise, and proactive.
+    You have access to the user's computer and can execute tasks autonomously.
+    Always confirm before making irreversible changes.
+
+memory:
+  backend: "chroma"              # chroma | faiss
+  db_path: "~/.jarvis/memory"
+  collection_name: "jarvis_memory"
+  embedding_model: "all-MiniLM-L6-v2"
+  max_results: 5
+  conversation_window: 20
+
+vision:
+  enabled: true
+  ocr_engine: "tesseract"
+  screen_capture_fps: 1
+  vision_model: "llava"          # Requires ollama pull llava
+  screenshot_dir: "~/.jarvis/screenshots"
+
+ui:
+  theme: "dark"
+  overlay_enabled: true
+  overlay_opacity: 0.92
+  overlay_position: "top-right"  # top-right | top-left | bottom-right | bottom-left
+  font_family: "JetBrains Mono"
+  accent_color: "#00FFB2"
+  window_width: 900
+  window_height: 650
+
+agent:
+  max_iterations: 10
+  timeout: 60
+  browser_headless: false
+  code_sandbox: true
+  allowed_paths:
+    - "~/Documents"
+    - "~/Downloads"
+    - "~/Desktop"
+    - "~/Projects"
